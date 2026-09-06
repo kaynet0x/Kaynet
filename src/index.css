@@ -12,14 +12,14 @@
 }
 
 :root[data-theme='light'] {
-  --bg: 38 18% 91%;
-  --surface: 38 16% 95%;
+  --bg: 38 14% 84%;
+  --surface: 38 14% 89%;
   --text: 222 24% 15%;
   --muted: 218 12% 42%;
-  --stroke: 35 14% 80%;
+  --stroke: 35 12% 72%;
   --accent: 222 24% 15%;
   --footer-video-opacity: 0.14;
-  --footer-overlay: hsl(38 18% 91% / 0.8);
+  --footer-overlay: hsl(38 14% 84% / 0.8);
   color-scheme: light;
 }
 

@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --bg: 220 18% 10%;
-  --surface: 220 16% 14%;
-  --text: 0 0% 96%;
-  --muted: 0 0% 53%;
-  --stroke: 220 14% 22%;
-  --accent: 0 0% 96%;
+  --bg: 210 20% 98%;
+  --surface: 0 0% 100%;
+  --text: 222 24% 15%;
+  --muted: 218 12% 42%;
+  --stroke: 215 18% 86%;
+  --accent: 222 24% 15%;
 }
 
 @theme {

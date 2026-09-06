@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from 'motion/react';
+import { EMAIL_CONTACT } from '../data/portfolioData';
 
 interface ResumeModalProps {
   isOpen: boolean;
@@ -228,7 +229,7 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
                     Discord: kaynet0x
                   </div>
                   <a
-                    href="mailto:kaynet0x@gmail.com"
+                    href={EMAIL_CONTACT}
                     className="p-2.5 rounded-xl bg-stroke/30 hover:bg-stroke/60 border border-stroke text-center text-text-primary transition-colors truncate"
                   >
                     kaynet0x@gmail.com
@@ -246,7 +247,7 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
                 Close
               </button>
               <a
-                href="mailto:kaynet0x@gmail.com?subject=Inquiry%20from%20Portfolio"
+                href={`${EMAIL_CONTACT}?subject=Inquiry%20from%20Portfolio`}
                 className="accent-gradient text-white px-6 py-2.5 rounded-full text-xs font-semibold hover:opacity-90 transition-opacity"
               >
                 Reach Out ↗

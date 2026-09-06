@@ -20,7 +20,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     // Open user mail client with populated fields
     const subject = encodeURIComponent(`Inquiry from ${name}`);
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-    window.location.href = `mailto:hello@michaelsmith.com?subject=${subject}&body=${body}`;
+    window.location.href = `${EMAIL_CONTACT}?subject=${subject}&body=${body}`;
 
     setSubmitted(true);
     setTimeout(() => {

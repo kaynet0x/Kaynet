@@ -1,12 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  --bg: 210 20% 98%;
+  --bg: 0 0% 8%;
+  --surface: 0 0% 12%;
+  --text: 0 0% 96%;
+  --muted: 0 0% 58%;
+  --stroke: 0 0% 20%;
+  --accent: 0 0% 96%;
+  --footer-video-opacity: 0.5;
+  --footer-overlay: hsl(0 0% 0% / 0.58);
+}
+
+:root[data-theme='light'] {
+  --bg: 40 30% 97%;
   --surface: 0 0% 100%;
   --text: 222 24% 15%;
   --muted: 218 12% 42%;
   --stroke: 215 18% 86%;
   --accent: 222 24% 15%;
+  --footer-video-opacity: 0.14;
+  --footer-overlay: hsl(40 30% 97% / 0.8);
+  color-scheme: light;
 }
 
 @theme {
@@ -76,6 +90,14 @@
 .halftone-overlay {
   background-image: radial-gradient(circle, #000 1px, transparent 1px);
   background-size: 4px 4px;
+}
+
+.footer-background-video {
+  opacity: var(--footer-video-opacity);
+}
+
+.footer-video-overlay {
+  background-color: var(--footer-overlay);
 }
 
 /* Custom scrollbar */

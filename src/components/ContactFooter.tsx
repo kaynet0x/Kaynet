@@ -85,10 +85,10 @@ export default function ContactFooter() {
           muted
           loop
           playsInline
-          className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover -translate-x-1/2 -translate-y-1/2 scale-y-[-1] opacity-60"
+          className="footer-background-video absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover -translate-x-1/2 -translate-y-1/2 scale-y-[-1]"
         />
         {/* Heavier overlay: bg-black/60 */}
-        <div className="absolute inset-0 bg-black/75 backdrop-blur-[2px]" />
+        <div className="footer-video-overlay absolute inset-0 backdrop-blur-[2px]" />
         {/* Subtle top fade to blend smoothly with previous section */}
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-bg to-transparent" />
       </div>

@@ -5,13 +5,17 @@ interface NavbarProps {
   onNavigate: (section: string) => void;
   onOpenResume: () => void;
   onOpenContact: () => void;
+  theme: 'dark' | 'light';
+  onToggleTheme: () => void;
 }
 
 export default function Navbar({
   activeSection,
   onNavigate,
   onOpenResume,
-  onOpenContact
+  onOpenContact,
+  theme,
+  onToggleTheme
 }: NavbarProps) {
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
 
@@ -111,6 +115,16 @@ export default function Navbar({
               ↗
             </span>
           </span>
+        </button>
+
+        <button
+          id="nav-theme-toggle"
+          onClick={onToggleTheme}
+          aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+          title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+          className="ml-1 inline-flex h-8 w-8 items-center justify-center rounded-full border border-stroke text-sm text-text-primary transition-colors hover:bg-stroke/50 focus:outline-none"
+        >
+          <span aria-hidden="true">{theme === 'dark' ? '☀' : '☾'}</span>
         </button>
       </nav>
     </header>

@@ -24,6 +24,7 @@ import { Project, JournalEntry, ExplorationItem } from './types';
 export default function App() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [activeSection, setActiveSection] = useState<string>('home');
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
 
   // Modals state
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -58,6 +59,10 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+  }, [theme]);
+
   const handleNavigate = (target: string) => {
     if (target === 'home') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -80,6 +85,8 @@ export default function App() {
         onNavigate={handleNavigate}
         onOpenResume={() => setIsResumeOpen(true)}
         onOpenContact={() => setIsContactOpen(true)}
+        theme={theme}
+        onToggleTheme={() => setTheme((currentTheme) => currentTheme === 'dark' ? 'light' : 'dark')}
       />
 
       <main>

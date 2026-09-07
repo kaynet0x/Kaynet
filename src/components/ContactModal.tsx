@@ -12,21 +12,40 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!name || !email) return;
+    if (!name || !email || isSubmitting) return;
 
-    // Open user mail client with populated fields
-    const subject = encodeURIComponent(`Inquiry from ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-    window.location.href = `${EMAIL_CONTACT}?subject=${subject}&body=${body}`;
+    setIsSubmitting(true);
+    setSubmitError('');
 
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      onClose();
-    }, 1800);
+    try {
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('email', email);
+      formData.append('message', message);
+
+      const response = await fetch('https://formspree.io/f/xaeydzqd', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: formData,
+      });
+
+      if (!response.ok) throw new Error('Unable to send message');
+
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        onClose();
+      }, 1800);
+    } catch {
+      setSubmitError('Your message could not be sent. Please try again or email Kaynet directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -72,10 +91,10 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                   ✓
                 </div>
                 <h4 className="text-lg font-medium text-text-primary mb-1">
-                  Message Prepared
+                  Message sent
                 </h4>
                 <p className="text-xs text-muted">
-                  Opening your email client to send your message directly.
+                  Thanks — Kaynet will receive your message shortly.
                 </p>
               </div>
             ) : (
@@ -131,11 +150,17 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
                   <button
                     type="submit"
+                    disabled={isSubmitting}
                     className="accent-gradient text-bg px-6 py-3 rounded-full text-xs font-semibold hover:opacity-90 transition-opacity cursor-pointer"
                   >
-                    Send message ↗
+                    {isSubmitting ? 'Sending…' : 'Send message ↗'}
                   </button>
                 </div>
+                {submitError && (
+                  <p role="alert" className="text-xs text-red-400">
+                    {submitError}
+                  </p>
+                )}
               </form>
             )}
           </motion.div>
